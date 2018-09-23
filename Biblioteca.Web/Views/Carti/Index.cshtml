@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Biblioteca.Web.Models.Carti>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    @Html.ActionLink("Carte noua", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Titlu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Autor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Editura)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titlu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Autor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Editura)
+        </td>
+        <td>
+            @Html.ActionLink("Editeaza", "Edit", new { id = item.IdCarte }) |
+            @Html.ActionLink("Sterge", "Delete", new { id = item.IdCarte }) |
+
+            @*@if (item.IsAvailable)
+            {*@
+                <span>
+                    @Html.ActionLink("Asignare carte", "Create", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
+                </span>
+            @*}*@
+            @*else
+            {*@
+                <span>
+                    @Html.ActionLink("Predare carte", "Edit", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
+                </span>
+            @*}*@
+
+            </td>
+    </tr>
+}
+
+
+</table>
