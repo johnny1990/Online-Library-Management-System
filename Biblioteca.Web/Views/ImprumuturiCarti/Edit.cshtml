@@ -1,75 +1,7 @@
-﻿@*@model Biblioteca.Web.Models.ImprumuturiCarti
-
-    @{
-        ViewBag.Title = "Edit";
-    }
-
-    <h2>Edit</h2>
-
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>ImprumuturiCarti</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.IdImprumut)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdCarte, "IdCarte", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("IdCarte", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdCarte, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdClient, "IdClient", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("IdClient", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdClient, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DataImprumut, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DataImprumut, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DataImprumut, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.DataReturnare, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DataReturnare, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DataReturnare, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }*@
-
-
-@model Biblioteca.Web.Models.ImprumuturiCarti
+﻿@model Biblioteca.Web.Models.ImprumuturiCarti
 
 @{
-    ViewBag.Title = "Return a book";
+    ViewBag.Title = "Inapoiare carte";
 }
 <h2>Return a Book</h2>
 @using (Html.BeginForm())
@@ -88,7 +20,7 @@
         <div class="form-group">
             <div class="col-md-10">
 
-                @string.Format("You are about to return {0} which was borrowed by {1}.", Model.Carti.Titlu, Model.Clienti.Nume)
+                @string.Format("Vrei sa returnezi {0} cartea care a fost imprumutata de {1}.", Model.Carti.Titlu, Model.Clienti.Nume)
             </div>
         </div>
         <div class="form-group">

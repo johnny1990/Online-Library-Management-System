@@ -42,20 +42,14 @@
         <td>
             @Html.ActionLink("Editeaza", "Edit", new { id = item.IdCarte }) |
             @Html.ActionLink("Sterge", "Delete", new { id = item.IdCarte }) |
-
-            @*@if (item.IsAvailable)
-            {*@
+           
                 <span>
                     @Html.ActionLink("Asignare carte", "Create", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
                 </span>
-            @*}*@
-            @*else
-            {*@
+                     
                 <span>
                     @Html.ActionLink("Predare carte", "Edit", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
-                </span>
-            @*}*@
-
+                </span>            
             </td>
     </tr>
 }

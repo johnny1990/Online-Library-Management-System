@@ -15,13 +15,13 @@ namespace Biblioteca.Web.Controllers
         private BibliotecaDBEntities db = new BibliotecaDBEntities();
 
         // GET: Clienti
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Clientis.ToList());
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // GET: Clienti/Create
         public ActionResult Create()
         {
@@ -33,7 +33,7 @@ namespace Biblioteca.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "IdClient,Nume,Adresa,Contact")] Clienti clienti)
         {
             if (ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace Biblioteca.Web.Controllers
             return View(clienti);
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // GET: Clienti/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -65,7 +65,7 @@ namespace Biblioteca.Web.Controllers
         // POST: Clienti/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "IdClient,Nume,Adresa,Contact")] Clienti clienti)
@@ -79,7 +79,7 @@ namespace Biblioteca.Web.Controllers
             return View(clienti);
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // GET: Clienti/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -95,7 +95,7 @@ namespace Biblioteca.Web.Controllers
             return View(clienti);
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // POST: Clienti/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

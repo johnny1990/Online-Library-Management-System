@@ -16,7 +16,7 @@ namespace Biblioteca.Web.Controllers
         private BibliotecaDBEntities db = new BibliotecaDBEntities();
 
         // GET: Carti
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             //var carti = db.Cartis.Include(h => h.ImprumuturiCartis)
@@ -34,7 +34,7 @@ namespace Biblioteca.Web.Controllers
             return View(db.Cartis.ToList());
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // GET: Carti/Create
         public ActionResult Create()
         {
@@ -59,7 +59,7 @@ namespace Biblioteca.Web.Controllers
             return View(carti);
         }
 
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         // GET: Carti/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,7 +80,7 @@ namespace Biblioteca.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "IdCarte,Titlu,Cod,Autor,Editura")] Carti carti)
         {
             if (ModelState.IsValid)
@@ -93,7 +93,7 @@ namespace Biblioteca.Web.Controllers
         }
 
         // GET: Carti/Delete/5
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +111,7 @@ namespace Biblioteca.Web.Controllers
         // POST: Carti/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        ////[Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Carti carti = db.Cartis.Find(id);
