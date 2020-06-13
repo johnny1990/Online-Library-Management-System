@@ -48,7 +48,7 @@ namespace Biblioteca.Web.Controllers
             return View(imprumut);
         }
 
-        // GET: BorrowHistories/Edit/5
+      
         ////[Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
