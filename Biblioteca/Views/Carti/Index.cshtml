@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Biblioteca.Models.Carti>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h2 class="text-center">Lista carti</h2>
+
+<p>
+    <a asp-action="Create" >Carte Noua</a>
+</p>
+<table class="table" border="1">
+    <thead>
+        <tr class="alert-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Titlu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editura)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titlu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editura)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdCarte">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCarte">Delete</a>
+
+                <span>
+                    @Html.ActionLink("Asignare carte", "Create", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
+                </span>
+
+                <span>
+                    @Html.ActionLink("Predare carte", "Edit", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
+                </span>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

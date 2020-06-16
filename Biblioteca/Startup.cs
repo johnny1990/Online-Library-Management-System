@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Biblioteca.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Biblioteca.Models;
 
 namespace Biblioteca
 {
@@ -39,6 +40,10 @@ namespace Biblioteca
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddDbContext<BibliotecaDBContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("BibliotecaDBConnection")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
