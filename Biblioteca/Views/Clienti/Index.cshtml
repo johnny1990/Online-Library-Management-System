@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Biblioteca.Models.Clienti>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h2 class="text-center">Lista clienti biblioteca</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" border="1">
+    <thead>
+        <tr class="alert-info">
+            <th>
+                @Html.DisplayNameFor(model => model.Nume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contact)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contact)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdClient">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdClient">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
