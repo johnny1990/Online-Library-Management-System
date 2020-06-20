@@ -3,13 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Web", "Biblioteca.Web\Biblioteca.Web.csproj", "{1CD49803-28C8-4F54-B15B-79DCA3783980}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Biblioteca", "Biblioteca\Biblioteca.csproj", "{D6C70D37-5E10-4176-A97D-0A913AEB8F10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Web.Tests", "Biblioteca.Web.Tests\Biblioteca.Web.Tests.csproj", "{FFC07698-DE5D-4166-9FC1-F2627D7B3FB0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca", "Biblioteca\Biblioteca.csproj", "{D6C70D37-5E10-4176-A97D-0A913AEB8F10}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biblioteca.Tests", "Biblioteca.Tests\Biblioteca.Tests.csproj", "{F4644957-3275-4A53-9E32-640F7BCFFE6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Biblioteca.Tests", "Biblioteca.Tests\Biblioteca.Tests.csproj", "{F4644957-3275-4A53-9E32-640F7BCFFE6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1CD49803-28C8-4F54-B15B-79DCA3783980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CD49803-28C8-4F54-B15B-79DCA3783980}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CD49803-28C8-4F54-B15B-79DCA3783980}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CD49803-28C8-4F54-B15B-79DCA3783980}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FFC07698-DE5D-4166-9FC1-F2627D7B3FB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FFC07698-DE5D-4166-9FC1-F2627D7B3FB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FFC07698-DE5D-4166-9FC1-F2627D7B3FB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FFC07698-DE5D-4166-9FC1-F2627D7B3FB0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D6C70D37-5E10-4176-A97D-0A913AEB8F10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6C70D37-5E10-4176-A97D-0A913AEB8F10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6C70D37-5E10-4176-A97D-0A913AEB8F10}.Release|Any CPU.ActiveCfg = Release|Any CPU
