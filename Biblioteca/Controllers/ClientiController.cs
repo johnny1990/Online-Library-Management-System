@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Biblioteca.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Biblioteca.Controllers
 {
@@ -19,12 +20,14 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Clienti
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Clienti.ToListAsync());
         }
 
         // GET: Clienti/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,6 +46,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Clienti/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -53,6 +57,7 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("IdClient,Nume,Adresa,Contact")] Clienti clienti)
         {
             if (ModelState.IsValid)
@@ -65,6 +70,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Clienti/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,6 +91,7 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("IdClient,Nume,Adresa,Contact")] Clienti clienti)
         {
             if (id != clienti.IdClient)
@@ -116,6 +123,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Clienti/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +144,7 @@ namespace Biblioteca.Controllers
         // POST: Clienti/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var clienti = await _context.Clienti.FindAsync(id);

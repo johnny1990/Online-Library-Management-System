@@ -1,0 +1,49 @@
+﻿@model Biblioteca.Models.ImprumuturiCarti
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>ImprumuturiCarti</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdImprumut" />
+            <div class="form-group">
+                <label asp-for="IdCarte" class="control-label"></label>
+                <select asp-for="IdCarte" class="form-control" asp-items="ViewBag.IdCarte"></select>
+                <span asp-validation-for="IdCarte" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdClient" class="control-label"></label>
+                <select asp-for="IdClient" class="form-control" asp-items="ViewBag.IdClient"></select>
+                <span asp-validation-for="IdClient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataImprumut" class="control-label"></label>
+                <input asp-for="DataImprumut" class="form-control" />
+                <span asp-validation-for="DataImprumut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DataReturnare" class="control-label"></label>
+                <input asp-for="DataReturnare" class="form-control" />
+                <span asp-validation-for="DataReturnare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
