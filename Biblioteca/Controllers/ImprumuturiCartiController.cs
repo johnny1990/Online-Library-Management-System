@@ -69,6 +69,7 @@ namespace Biblioteca.Controllers
             {
                 return NotFound();
             }
+
             ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod", imprumuturiCarti.IdCarte);
             ViewData["IdClient"] = new SelectList(_context.Clienti, "IdClient", "Adresa", imprumuturiCarti.IdClient);
             return View(imprumuturiCarti);
