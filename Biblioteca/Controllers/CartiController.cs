@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Biblioteca.Controllers
 {
+    //[Authorize(Roles = "Admin")]
     public class CartiController : Controller
     {
         private readonly BibliotecaDBContext _context;
@@ -20,14 +21,12 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Carti
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Carti.ToListAsync());
         }
 
         // GET: Carti/Create
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -38,7 +37,6 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("IdCarte,Titlu,Cod,Autor,Editura")] Carti carti)
         {
             if (ModelState.IsValid)
@@ -72,7 +70,6 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("IdCarte,Titlu,Cod,Autor,Editura")] Carti carti)
         {
             if (id != carti.IdCarte)
@@ -104,7 +101,6 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Carti/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -125,7 +121,6 @@ namespace Biblioteca.Controllers
         // POST: Carti/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var carti = await _context.Carti.FindAsync(id);
