@@ -20,7 +20,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: ImprumuturiCarti
-        [Authorize(Roles = "Admin,Client")]
+        //[Authorize(Roles = "Admin,Client")]
         public async Task<IActionResult> Index()
         {
             var bibliotecaDBContext = _context.ImprumuturiCarti.Include(i => i.Carti).Include(i => i.Clienti);
@@ -28,7 +28,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: ImprumuturiCarti/Create
-        [Authorize(Roles = "Admin,Client")]
+        //[Authorize(Roles = "Admin,Client")]
         public IActionResult Create()
         {
             ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod");
@@ -41,7 +41,7 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin,Client")]
+        //[Authorize(Roles = "Admin,Client")]
         public async Task<IActionResult> Create([Bind("IdImprumut,IdCarte,IdClient,DataImprumut,DataReturnare")] ImprumuturiCarti imprumuturiCarti)
         {
             if (ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: ImprumuturiCarti/Edit/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,7 +80,7 @@ namespace Biblioteca.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("IdImprumut,IdCarte,IdClient,DataImprumut,DataReturnare")] ImprumuturiCarti imprumuturiCarti)
         {
             if (id != imprumuturiCarti.IdImprumut)
