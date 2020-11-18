@@ -1,49 +1,26 @@
 ﻿@model Biblioteca.Models.ImprumuturiCarti
-
-@{
-    ViewData["Title"] = "Edit";
-}
-
-<h2>Edit</h2>
-
-<h4>ImprumuturiCarti</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="IdImprumut" />
-            <div class="form-group">
-                <label asp-for="IdCarte" class="control-label"></label>
-                <select asp-for="IdCarte" class="form-control" asp-items="ViewBag.IdCarte"></select>
-                <span asp-validation-for="IdCarte" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IdClient" class="control-label"></label>
-                <select asp-for="IdClient" class="form-control" asp-items="ViewBag.IdClient"></select>
-                <span asp-validation-for="IdClient" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataImprumut" class="control-label"></label>
-                <input asp-for="DataImprumut" class="form-control" />
-                <span asp-validation-for="DataImprumut" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataReturnare" class="control-label"></label>
-                <input asp-for="DataReturnare" class="form-control" />
-                <span asp-validation-for="DataReturnare" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+@{ ViewBag.Title = "Returneaza carte"; }
+                <h2>Return a Book</h2>
+                @using (Html.BeginForm())
+                {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.IdImprumut) 
+                    @Html.HiddenFor(model => model.IdCarte)
+                    @Html.HiddenFor(model => model.DataImprumut) 
+                    @Html.HiddenFor(model => model.DataReturnare)
+                    @Html.HiddenFor(model => model.IdClient)
+                    <div class="form-group">
+                        <div class="col-md-10">
+                        @string.Format("returnezi {0} cartea care a fost imprumutata de la {1} pana la {2}.", Model.Carti.Titlu, Model.Clienti.Nume, Model.DataImprumut.ToLongDateString())
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Return" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>}
+<div>@Html.ActionLink("Back to Book List", "Index", "Carti")</div>

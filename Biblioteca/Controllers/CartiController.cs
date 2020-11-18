@@ -24,8 +24,6 @@ namespace Biblioteca.Controllers
         // GET: Carti
         public IActionResult Index()
         {
-            //return View(await _context.Carti.ToListAsync());
-
             var carti = _context.Carti.Include(h => h.ImprumuturiCarti)
                 .Select(b => new CarteVM
                 {
@@ -63,7 +61,7 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Carti/Edit/5
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

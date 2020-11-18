@@ -29,11 +29,22 @@ namespace Biblioteca.Controllers
 
         // GET: ImprumuturiCarti/Create
         //[Authorize(Roles = "Admin,Client")]
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
-            ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod");
-            ViewData["IdClient"] = new SelectList(_context.Clienti, "IdClient", "Adresa");
-            return View();
+            if (id == null)
+            {
+                return BadRequest();
+            }
+
+            var book = _context.Carti.Find(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            var imprumut = new ImprumuturiCarti { IdCarte = book.IdCarte, DataImprumut = DateTime.Now, Carti = book };
+            ViewBag.IdClient = new SelectList(_context.Clienti, "IdClient", "Nume");
+            return View(imprumut);
         }
 
         // POST: ImprumuturiCarti/Create
@@ -50,29 +61,30 @@ namespace Biblioteca.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod", imprumuturiCarti.IdCarte);
-            ViewData["IdClient"] = new SelectList(_context.Clienti, "IdClient", "Adresa", imprumuturiCarti.IdClient);
+
+            ViewBag.IdClient = new SelectList(_context.Clienti, "IdClient", "Nume", imprumuturiCarti.IdClient);
+            imprumuturiCarti.Carti = _context.Carti.Find(imprumuturiCarti.IdCarte);
             return View(imprumuturiCarti);
         }
 
         // GET: ImprumuturiCarti/Edit/5
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
-
-            var imprumuturiCarti = await _context.ImprumuturiCarti.FindAsync(id);
-            if (imprumuturiCarti == null)
+            ImprumuturiCarti imprumut = _context.ImprumuturiCarti
+                .Include(b => b.Carti)
+                .Include(c => c.Clienti)
+                .Where(b => b.IdCarte == id && b.DataReturnare == null)
+                .FirstOrDefault();
+            if (imprumut == null)
             {
                 return NotFound();
             }
-
-            ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod", imprumuturiCarti.IdCarte);
-            ViewData["IdClient"] = new SelectList(_context.Clienti, "IdClient", "Adresa", imprumuturiCarti.IdClient);
-            return View(imprumuturiCarti);
+            return View(imprumut);
         }
 
         // POST: ImprumuturiCarti/Edit/5
@@ -81,35 +93,21 @@ namespace Biblioteca.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("IdImprumut,IdCarte,IdClient,DataImprumut,DataReturnare")] ImprumuturiCarti imprumuturiCarti)
+        public async Task<IActionResult> Edit([Bind("IdImprumut,IdCarte,IdClient,DataImprumut,DataReturnare")] ImprumuturiCarti imprumuturiCarti)
         {
-            if (id != imprumuturiCarti.IdImprumut)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
-                try
+                var borrowHistoryItem = _context.ImprumuturiCarti.Include(i => i.Carti)
+                    .FirstOrDefault(i => i.IdImprumut == imprumuturiCarti.IdImprumut);
+                if (borrowHistoryItem == null)
                 {
-                    _context.Update(imprumuturiCarti);
-                    await _context.SaveChangesAsync();
+                    return BadRequest();
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ImprumuturiCartiExists(imprumuturiCarti.IdImprumut))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+
+                borrowHistoryItem.DataReturnare = DateTime.Now;
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index", "Carti");
             }
-            ViewData["IdCarte"] = new SelectList(_context.Carti, "IdCarte", "Cod", imprumuturiCarti.IdCarte);
-            ViewData["IdClient"] = new SelectList(_context.Clienti, "IdClient", "Adresa", imprumuturiCarti.IdClient);
             return View(imprumuturiCarti);
         }
 
