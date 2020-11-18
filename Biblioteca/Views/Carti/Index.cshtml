@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Biblioteca.Models.Carti>
+﻿@model IEnumerable<Biblioteca.ViewModels.CarteVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -43,16 +43,21 @@
                 @Html.DisplayFor(modelItem => item.Editura)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdCarte">Edit</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdCarte">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdCarte" class="btn btn-success">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdCarte" class="btn btn-danger">Delete</a>
 
-                <span>
-                    @Html.ActionLink("Asignare carte", "Create", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
-                </span>
-
-                <span>
-                    @Html.ActionLink("Predare carte", "Edit", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-default" })
-                </span>
+                @if (item.Disponibil)
+                {
+                    <span>
+                      @Html.ActionLink("Asignare carte", "Create", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-primary" })
+                    </span>
+                }
+                else
+                {
+                     <span>
+                     @Html.ActionLink("Predare carte", "Edit", "ImprumuturiCarti", new { id = item.IdCarte }, new { @class = "btn btn-success" })
+                     </span>
+                }              
             </td>
         </tr>
 }

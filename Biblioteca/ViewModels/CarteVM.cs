@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Biblioteca.ViewModels
 {
-    public class CarteViewModel
+    public class CarteVM
     {
         public int IdCarte { get; set; }
 

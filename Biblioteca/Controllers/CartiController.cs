@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Biblioteca.Models;
 using Microsoft.AspNetCore.Authorization;
+using Biblioteca.ViewModels;
 
 namespace Biblioteca.Controllers
 {
@@ -21,9 +22,22 @@ namespace Biblioteca.Controllers
         }
 
         // GET: Carti
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Carti.ToListAsync());
+            //return View(await _context.Carti.ToListAsync());
+
+            var carti = _context.Carti.Include(h => h.ImprumuturiCarti)
+                .Select(b => new CarteVM
+                {
+                    IdCarte = b.IdCarte,
+                    Autor = b.Autor,
+                    Editura = b.Editura,
+                    Cod = b.Cod,
+                    Titlu = b.Titlu,
+                    Disponibil = !b.ImprumuturiCarti.Any(h => h.DataReturnare == null)
+                }).ToList();
+
+            return View(carti);
         }
 
         // GET: Carti/Create
