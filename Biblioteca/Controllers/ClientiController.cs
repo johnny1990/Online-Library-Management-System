@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Biblioteca.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class ClientiController : Controller
     {
         private readonly BibliotecaDBContext _context;

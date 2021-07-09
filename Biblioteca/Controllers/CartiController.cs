@@ -11,7 +11,7 @@ using Biblioteca.ViewModels;
 
 namespace Biblioteca.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CartiController : Controller
     {
         private readonly BibliotecaDBContext _context;
